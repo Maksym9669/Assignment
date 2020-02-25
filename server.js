@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 
+let users = require("./users");
+let users_statistic = require("./users_statistic");
 //In case we need post requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
