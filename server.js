@@ -27,13 +27,37 @@ app.use(bodyParser.json());
 // }
 
 app.get("/api/customers", (req, res) => {
-  const customers = [
-    { id: 1, firstName: "John", lastName: "Doe" },
-    { id: 2, firstName: "Brad", lastName: "Traversy" },
-    { id: 3, firstName: "Mary", lastName: "Swanson" }
-  ];
+  // const page = parseInt(req.query.page);
+  // const limit = parseInt(req.query.limit);
 
-  res.json(utils.calculateTotalClicksAndViews(users, users_statistics));
+  const page = 5;
+  const limit = 50;
+
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+
+  const resultUsers = users.slice(startIndex, endIndex);
+
+  let result = {
+    results: utils.calculateTotalClicksAndViews(resultUsers, users_statistics)
+  };
+
+  if (endIndex < users.length) {
+    result.next = {
+      page: page + 1,
+      limit: limit
+    };
+  }
+
+  if (startIndex > 0) {
+    result.previous = {
+      page: page - 1,
+      limit: limit
+    };
+  }
+
+  console.log(result);
+  res.json(result);
 });
 
 const PORT = process.env.PORT || 5000;
