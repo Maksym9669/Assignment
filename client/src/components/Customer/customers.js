@@ -30,6 +30,8 @@ class Customers extends Component {
             <th>Email</th>
             <th>Gender</th>
             <th>Ip address</th>
+            <th>Clicks count</th>
+            <th>Views count</th>
           </tr>
           {this.props.customers.map(customer => (
             <tr key={customer.id}>
@@ -39,6 +41,9 @@ class Customers extends Component {
               <td>{customer.email}</td>
               <td>{customer.gender}</td>
               <td>{customer.ip_address}</td>
+              <td>{customer.total_clicks}</td>
+              <td>{customer.total_page_views}</td>
+              <td>{customer.cha}</td>
             </tr>
           ))}
         </table>
