@@ -15,7 +15,7 @@ app.get("/api/customers", (req, res) => {
     { id: 3, firstName: "Mary", lastName: "Swanson" }
   ];
 
-  res.json(customers);
+  res.json(users);
 });
 
 const PORT = process.env.PORT || 5000;
