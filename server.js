@@ -63,14 +63,14 @@ app.get("/api/customers", (req, res) => {
 app.get("/api/customers/:id", (req, res) => {
   let id = +req.params.id;
   // console.log(id);
-  let result = { clicks: {}, views: {} };
-  for (let entry of users_statistics) {
-    if (entry.user_id === id) {
-      console.log(entry.date);
-      result.clicks[entry.date] = entry.clicks;
-      result.views[entry.date] = entry.page_views;
-    }
-  }
+  let result = utils.getChartDataForUser(id, users_statistics);
+  result.credentials = utils.getUserCredentials(id, users);
+  result.dates = {
+    minDateViews: utils.getMinKey(result.views),
+    maxDateViews: utils.getMaxKey(result.views),
+    minDateClicks: utils.getMinKey(result.clicks),
+    maxDateClicks: utils.getMaxKey(result.clicks)
+  }; //iterate over the whole object to find min and max dates
   console.log(result);
   res.json(result);
 });
