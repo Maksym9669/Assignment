@@ -60,6 +60,21 @@ app.get("/api/customers", (req, res) => {
   res.json(result);
 });
 
+app.get("/api/customers/:id", (req, res) => {
+  let id = +req.params.id;
+  // console.log(id);
+  let result = { clicks: {}, views: {} };
+  for (let entry of users_statistics) {
+    if (entry.user_id === id) {
+      console.log(entry.date);
+      result.clicks[entry.date] = entry.clicks;
+      result.views[entry.date] = entry.page_views;
+    }
+  }
+  console.log(result);
+  res.json(result);
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => `Server running on port ${PORT}`);

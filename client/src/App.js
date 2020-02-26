@@ -7,6 +7,8 @@ import "./App.css";
 import User from "./User";
 import store from "./store";
 import Customers from "./components/Customer/customers";
+import { LineChart, PieChart } from "react-chartkick";
+import "chart.js";
 
 class App extends Component {
   render() {
@@ -14,12 +16,12 @@ class App extends Component {
       <Router>
         <Provider store={store}>
           <div className="App">
-            {/* <header className="App-header">
+            <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
               <h1 className="App-title">React/Redux Express Starter</h1>
             </header>
-            <Customers /> */}
-
+            {/* <Customers /> */}
+            {/* <LineChart data={{ "2017-05-13": 2, "2017-05-14": 5 }} /> */}
             <Switch>
               <Route exact path="/users">
                 <Customers />

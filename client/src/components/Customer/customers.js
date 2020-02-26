@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCustomers } from "../../store/actions/customer";
 import "./customers.css";
+import Td from "../../Td";
 
 function User(props) {
   return (
@@ -53,19 +54,18 @@ class Customers extends Component {
 
           {this.props.customers.results
             ? this.props.customers.results.map(customer => (
-                <Link to={`/users/${customer.id}`}>
-                  <tr key={customer.id}>
-                    <td>{customer.id}</td>
-                    <td>{customer.first_name}</td>
-                    <td>{customer.last_name}</td>
-                    <td>{customer.email}</td>
-                    <td>{customer.gender}</td>
-                    <td>{customer.ip_address}</td>
-                    <td>{customer.total_clicks}</td>
-                    <td>{customer.total_page_views}</td>
-                    <td>{customer.cha}</td>
-                  </tr>
-                </Link>
+                <tr key={customer.id}>
+                  <Td to={`/users/${customer.id}`}>{customer.id} </Td>
+                  <Td to={`/users/${customer.id}`}>{customer.first_name}</Td>
+                  <Td to={`/users/${customer.id}`}>{customer.last_name}</Td>
+                  <Td to={`/users/${customer.id}`}>{customer.email}</Td>
+                  <Td to={`/users/${customer.id}`}>{customer.gender}</Td>
+                  <Td to={`/users/${customer.id}`}>{customer.address}</Td>
+                  <Td to={`/users/${customer.id}`}>{customer.total_clicks}</Td>
+                  <Td to={`/users/${customer.id}`}>
+                    {customer.total_page_views}
+                  </Td>
+                </tr>
               ))
             : null}
         </table>
