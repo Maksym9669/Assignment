@@ -25,6 +25,59 @@ header {
   color: #ffffff;
 }
 
+footer {
+  height: 57px;
+  left: 0px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  color: #ffffff;
+  background: #1c3b55;
+}
+
+footer span {
+  padding-left: 130px;
+  padding-right: 130px;
+}
+
+.font-styled {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 39px;
+  color: #1a1a1a;
+}
+
+.link {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+  color: #cccccc;
+}
+
+.thead-blue {
+  background-color: #3a80ba;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+  color: #ffffff;
+}
+
+.table-custom {
+  border-radius: 1rem;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

@@ -127,15 +127,14 @@ export default class User extends Component {
                 }}
                 placeholder={"Max value: " + this.state.data.dates.maxDateViews}
               />
+              <footer>
+                <span>AppCo</span>
+                <span>All rights reserved by ThemeTags</span>
+                <span>Copyrights © 2019</span>
+              </footer>
             </div>
           )}
         </div>
-        <footer class="page-footer font-small blue">
-          <div class="footer-copyright text-center py-3">
-            © 2020 Copyright:
-            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-          </div>
-        </footer>
       </div>
     );
   }

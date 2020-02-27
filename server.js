@@ -30,6 +30,7 @@ app.get("/api/customers", (req, res) => {
   // const page = parseInt(req.query.page);
   // const limit = parseInt(req.query.limit);
 
+  //Hardcoded values to see how it looks like
   const page = 5;
   const limit = 50;
 
