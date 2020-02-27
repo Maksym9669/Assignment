@@ -18,22 +18,18 @@ module.exports = {
     return usersCopy;
   },
 
-  getChartDataForUser: function(
-    userId,
-    users_statistics,
-    startDate = 0,
-    endDate = 6
-  ) {
-    let numberOfDays = endDate - startDate + 1;
+  getChartDataForUser: function(userId, users_statistics) {
+    // let numberOfDays = endDate - startDate + 1;
+    // let numberOfDaysLeft = 7;
     let result = { clicks: {}, views: {} };
     for (let entry of users_statistics) {
-      if (entry.user_id === userId && numberOfDays) {
+      if (entry.user_id === userId) {
         result.clicks[entry.date] = entry.clicks;
         result.views[entry.date] = entry.page_views;
-        numberOfDays--;
-        // clicks[entry.date] = entry.clicks;
-        // views[entry.date] = entry.page_views;
       }
+
+      // clicks[entry.date] = entry.clicks;
+      // views[entry.date] = entry.page_views;
     }
 
     return result;

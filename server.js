@@ -64,14 +64,14 @@ app.get("/api/customers/:id", (req, res) => {
   let id = +req.params.id;
   // console.log(id);
   let result = utils.getChartDataForUser(id, users_statistics);
+  if (!result) throw new Error("User with given id does not exist");
   result.credentials = utils.getUserCredentials(id, users);
   result.dates = {
     minDateViews: utils.getMinKey(result.views),
     maxDateViews: utils.getMaxKey(result.views),
     minDateClicks: utils.getMinKey(result.clicks),
     maxDateClicks: utils.getMaxKey(result.clicks)
-  }; //iterate over the whole object to find min and max dates
-  console.log(result);
+  }; //iterate over all keys(dates) of object to find min and max dates
   res.json(result);
 });
 

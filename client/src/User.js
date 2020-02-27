@@ -7,9 +7,24 @@ export default class User extends Component {
     super(props);
     this.state = {
       isFetching: true,
-      data: null
+      data: null,
+      minViewsDate: null,
+      maxViewsDate: null,
+      minClicksDate: null,
+      maxClicksDate: null
     };
   }
+
+  handleInputChange = event => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    this.setState({
+      [name]: value
+    });
+    // console.log(this.state.minClicksDate);
+  };
+
   componentDidMount() {
     fetch(`/api/customers/${this.props.match.params.userId}`)
       .then(res => res.json())
@@ -23,6 +38,28 @@ export default class User extends Component {
       .catch(() => console.log("error"));
   }
   render() {
+    function serveDataForChart(
+      clickOrViewsObject = {},
+      startDate = "",
+      endDate = ""
+    ) {
+      let result = { ...clickOrViewsObject };
+      if (!startDate || !endDate) {
+        let defaultNumberOfDays = 7;
+        for (let key in result) {
+          if (defaultNumberOfDays <= 0) {
+            delete result[key];
+          }
+          defaultNumberOfDays--;
+        }
+      } else {
+        for (let key in result) {
+          if (key < startDate || key > endDate) delete result[key];
+        }
+      }
+      return result;
+    }
+
     return (
       <div>
         {/* <h1>{this.props.match.params.userId}</h1> */}
@@ -30,27 +67,60 @@ export default class User extends Component {
           <div>
             <h1>{this.state.data.credentials}</h1>
             <h1>Clicks</h1>
-            <LineChart data={this.state.data.clicks} />
+            <LineChart
+              data={serveDataForChart(
+                this.state.data.clicks,
+                this.state.minClicksDate,
+                this.state.maxClicksDate
+              )}
+            />
+
             <input
               type="text"
+              name="minClicksDate"
+              value={this.state.minClicksDate || ""}
+              onChange={e => {
+                this.handleInputChange(e);
+              }}
               placeholder={"Min value: " + this.state.data.dates.minDateClicks}
             />
             <input
               type="text"
+              name="maxClicksDate"
+              value={this.state.maxClicksDate || ""}
+              onChange={e => {
+                this.handleInputChange(e);
+              }}
               placeholder={"Max value: " + this.state.data.dates.maxDateClicks}
             />
+
             <h1>Views</h1>
-            <LineChart data={this.state.data.views} />
+            <LineChart
+              data={serveDataForChart(
+                this.state.data.views,
+                this.state.minViewsDate,
+                this.state.maxViewsDate
+              )}
+            />
+
             <input
               type="text"
+              name="minViewsDate"
+              value={this.state.minViewsDate || ""}
+              onChange={e => {
+                this.handleInputChange(e);
+              }}
               placeholder={"Min value: " + this.state.data.dates.minDateViews}
             />
             <input
               type="text"
+              name="maxViewsDate"
+              value={this.state.maxViewsDate || ""}
+              onChange={e => {
+                this.handleInputChange(e);
+              }}
               placeholder={"Max value: " + this.state.data.dates.maxDateViews}
             />
-            <h1>{JSON.stringify(this.state.data.clicks)}</h1>
-            <h1>{JSON.stringify(this.state.data.views)}</h1>
           </div>
         )}
       </div>
