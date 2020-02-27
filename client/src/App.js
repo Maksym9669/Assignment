@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Provider } from "react-redux";
 import MainPage from "./MainPage";
 import logo from "./logo.svg";
+import "./styles/style.css";
 import "./App.css";
 import User from "./User";
 import store from "./store";
@@ -16,12 +17,9 @@ class App extends Component {
       <Router>
         <Provider store={store}>
           <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">React/Redux Express Starter</h1>
-            </header>
             {/* <Customers /> */}
             {/* <LineChart data={{ "2017-05-13": 2, "2017-05-14": 5 }} /> */}
+            {/* object with date as keys mapped to number of views/clicks */}
             <Switch>
               <Route exact path="/users">
                 <Customers />
@@ -29,8 +27,10 @@ class App extends Component {
               <Route path="/users/:userId" component={User}></Route>
               <Route path="/">
                 <MainPage></MainPage>
-                <button>
-                  <Link to="/users">Go to statistics</Link>
+                <button type="button" className="btn btn-light">
+                  <Link className="link" to="/users">
+                    View Stats
+                  </Link>
                 </button>
               </Route>
             </Switch>

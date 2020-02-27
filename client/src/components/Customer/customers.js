@@ -7,6 +7,7 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import "../../styles/style.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCustomers } from "../../store/actions/customer";
@@ -39,6 +40,7 @@ class Customers extends Component {
   render() {
     return (
       <div>
+        <header className="App-header"></header>
         <h2>Users</h2>
         <table>
           <tr>
@@ -71,6 +73,12 @@ class Customers extends Component {
         </table>
 
         <Route path="/users/:userId" component={User}></Route>
+        <footer class="page-footer font-small blue">
+          <div class="footer-copyright text-center py-3">
+            © 2020 Copyright:
+            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+          </div>
+        </footer>
       </div>
     );
   }
