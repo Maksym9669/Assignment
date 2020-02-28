@@ -31,9 +31,10 @@ app.get("/api/customers", (req, res) => {
   // const limit = parseInt(req.query.limit);
 
   //Hardcoded values to see how it looks like
-  const page = 5;
-  const limit = 50;
-
+  // const page = 5;
+  // const limit = 50;
+  const page = 1;
+  const limit = 1000;
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
 

@@ -1,6 +1,17 @@
 import React, { Component } from "react";
 import { LineChart } from "react-chartkick";
 import "chart.js";
+import "./styles/style.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "./Loader";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 
 export default class User extends Component {
   constructor(props) {
@@ -63,20 +74,43 @@ export default class User extends Component {
     return (
       <div>
         <header className="header">AppCo</header>
-        <div class="container-fluid">
-          {/* <h1>{this.props.match.params.userId}</h1> */}
-          {!this.state.data ? null : (
-            <div>
-              <h1>{this.state.data.credentials}</h1>
-              <h1>Clicks</h1>
-              <LineChart
-                data={serveDataForChart(
-                  this.state.data.clicks,
-                  this.state.minClicksDate,
-                  this.state.maxClicksDate
-                )}
-              />
-
+        {/* <div class="container"> */}
+        {/* <h1>{this.props.match.params.userId}</h1> */}
+        {!this.state.data ? (
+          <Loader></Loader>
+        ) : (
+          <div>
+            <div class="container">
+              <div className="row">
+                <p>
+                  <Link className="link" to={"/"}>
+                    Main page >
+                  </Link>{" "}
+                  <Link className="link" to={"/users/"}>
+                    User statistics >
+                  </Link>{" "}
+                  <span className="font-styled-3">
+                    {this.state.data.credentials}
+                  </span>
+                </p>
+              </div>
+              <div className="row">
+                <h2 className="font-styled">{this.state.data.credentials}</h2>
+              </div>
+              <div className="row">
+                <h3 className="font-styled-2">Clicks</h3>
+              </div>
+              <div className="row">
+                {/* <h1>{this.state.data.credentials}</h1>
+              <h1>Clicks</h1> */}
+                <LineChart
+                  data={serveDataForChart(
+                    this.state.data.clicks,
+                    this.state.minClicksDate,
+                    this.state.maxClicksDate
+                  )}
+                />
+              </div>
               <input
                 type="text"
                 name="minClicksDate"
@@ -99,16 +133,18 @@ export default class User extends Component {
                   "Max value: " + this.state.data.dates.maxDateClicks
                 }
               />
-
-              <h1>Views</h1>
-              <LineChart
-                data={serveDataForChart(
-                  this.state.data.views,
-                  this.state.minViewsDate,
-                  this.state.maxViewsDate
-                )}
-              />
-
+              <div className="row">
+                <h3 className="font-styled-2">Views</h3>
+              </div>
+              <div className="row">
+                <LineChart
+                  data={serveDataForChart(
+                    this.state.data.views,
+                    this.state.minViewsDate,
+                    this.state.maxViewsDate
+                  )}
+                />
+              </div>
               <input
                 type="text"
                 name="minViewsDate"
@@ -127,14 +163,15 @@ export default class User extends Component {
                 }}
                 placeholder={"Max value: " + this.state.data.dates.maxDateViews}
               />
-              <footer>
-                <span>AppCo</span>
-                <span>All rights reserved by ThemeTags</span>
-                <span>Copyrights © 2019</span>
-              </footer>
             </div>
-          )}
-        </div>
+            <footer>
+              <span>AppCo</span>
+              <span>All rights reserved by ThemeTags</span>
+              <span>Copyrights © 2019</span>
+            </footer>
+          </div>
+        )}
+        {/* </div> */}
       </div>
     );
   }

@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCustomers } from "../../store/actions/customer";
 import "./customers.css";
+import Loader from "../../Loader";
 import Td from "../../Td";
 
 function User(props) {
@@ -41,13 +42,13 @@ class Customers extends Component {
     return (
       <div>
         <header className="header">AppCo</header>
-        <div class="container">
-          <div class="row">
+        <div className="container">
+          <div className="row">
             <p>
               <Link className="link" to={"/"}>
                 Main page >
               </Link>{" "}
-              User statistics
+              <span className="font-styled-3">User statistics</span>
             </p>
           </div>
           <div class="row">
@@ -55,23 +56,26 @@ class Customers extends Component {
               <h2 className="font-styled">User statistics</h2>
             </p>
           </div>
-          <div class="card table-responsive">
-            <table className="table table-custom table-bordered table-striped">
-              <thead className="thead-blue">
-                <tr>
-                  <th>Id</th>
-                  <th>First name</th>
-                  <th>Last name</th>
-                  <th>Email</th>
-                  <th>Gender</th>
-                  <th>Ip address</th>
-                  <th>Clicks count</th>
-                  <th>Views count</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.props.customers.results
-                  ? this.props.customers.results.map(customer => (
+        </div>
+        {this.props.customers.results ? (
+          <div>
+            <div className="container">
+              <div className="card table-responsive">
+                <table className="table table-custom table-bordered table-striped">
+                  <thead className="thead-blue">
+                    <tr>
+                      <th>Id</th>
+                      <th>First name</th>
+                      <th>Last name</th>
+                      <th>Email</th>
+                      <th>Gender</th>
+                      <th>Ip address</th>
+                      <th>Clicks count</th>
+                      <th>Views count</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.props.customers.results.map(customer => (
                       <tr key={customer.id}>
                         <Td to={`/users/${customer.id}`}>{customer.id} </Td>
                         <Td to={`/users/${customer.id}`}>
@@ -92,18 +96,22 @@ class Customers extends Component {
                           {customer.total_page_views}
                         </Td>
                       </tr>
-                    ))
-                  : null}
-              </tbody>
-            </table>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <footer>
+              <span>AppCo</span>
+              <span>All rights reserved by ThemeTags</span>
+              <span>Copyrights © 2019</span>
+            </footer>
           </div>
-        </div>
+        ) : (
+          <Loader></Loader>
+        )}
+
         <Route path="/users/:userId" component={User}></Route>
-        <footer>
-          <span>AppCo</span>
-          <span>All rights reserved by ThemeTags</span>
-          <span>Copyrights © 2019</span>
-        </footer>
       </div>
     );
   }
