@@ -27,11 +27,6 @@ class App extends Component {
               <Route path="/users/:userId" component={User}></Route>
               <Route path="/">
                 <MainPage></MainPage>
-                <button type="button" className="btn btn-light">
-                  <Link className="link" to="/users">
-                    View Stats
-                  </Link>
-                </button>
               </Route>
             </Switch>
           </div>

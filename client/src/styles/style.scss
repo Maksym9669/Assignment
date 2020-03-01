@@ -3,10 +3,21 @@
 // }
 @import "./variables";
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
-.link {
+
+@mixin font-mixing {
   font-family: Montserrat;
   font-style: normal;
   font-weight: normal;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 57px;
+}
+.link {
+  @include font-mixing;
   font-size: 16px;
   line-height: 142%;
   /* identical to box height, or 23px */
@@ -17,9 +28,7 @@
 }
 
 header {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
+  @include font-mixing;
   font-size: 40px;
   line-height: 49px;
   /* identical to box height */
@@ -34,15 +43,18 @@ header {
 footer {
   height: 57px;
   left: 0px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
+  @include font-mixing;
   font-size: 24px;
   line-height: 29px;
   padding-top: 14px;
   padding-bottom: 14px;
 
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
   color: #ffffff;
+
   background: #1c3b55;
   span {
     padding-left: 130px;
@@ -51,9 +63,7 @@ footer {
 }
 
 .font-styled {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: bold;
+  @include font-mixing;
   font-size: 32px;
   line-height: 39px;
   color: #1a1a1a;
@@ -70,9 +80,7 @@ footer {
 }
 
 .font-styled-3 {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
+  @include font-mixing;
   font-size: 16px;
   line-height: 20px;
   /* identical to box height */
@@ -80,21 +88,118 @@ footer {
   color: #3a80ba;
 }
 
-.link {
+.font-styled-4 {
   font-family: Montserrat;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+
+  color: #1a1a1a;
+}
+
+.font-styled-5 {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 59px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #1a1a1a;
+}
+
+.font-styled-6 {
+  @include font-mixing;
+  font-size: 16px;
+  line-height: 162%;
+  /* or 26px */
+
+  text-align: center;
+
+  color: #7e7e7e;
+}
+
+.font-styled-7 {
+  @include font-mixing;
+  font-size: 16px;
+  line-height: 142%;
+  /* identical to box height, or 23px */
+
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.font-styled-8 {
+  @include font-mixing;
+  font-size: 20px;
+  line-height: 142%;
+  /* or 28px */
+
+  text-align: center;
+
+  color: #7e7e7e;
+}
+
+.font-styled-9 {
+  @include font-mixing;
+  font-size: 20px;
+  line-height: 142%;
+  /* or 28px */
+
+  color: #ffffff;
+}
+
+.font-styled-10 {
+  @include font-mixing;
+  font-size: 16px;
+  line-height: 142%;
+  /* or 23px */
+
+  color: #ffffff;
+}
+.font-styled-11 {
+  @include font-mixing;
+  font-size: 48px;
+  line-height: 59px;
+
+  color: #ffffff;
+}
+.font-styled-12 {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 39px;
+  color: #ffffff;
+}
+
+.font-styled-13 {
+  @include font-mixing;
+  font-size: 16px;
+  line-height: 142%;
+  /* identical to box height, or 23px */
+
+  text-align: center;
+
+  color: #3a80ba;
+}
+.link {
+  @include font-mixing;
   font-size: 16px;
   line-height: 20px;
   /* identical to box height */
 
   color: #cccccc;
 }
+
 .thead-blue {
   background-color: #3a80ba;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
+  @include font-mixing;
   font-size: 16px;
   line-height: 20px;
   /* identical to box height */
@@ -107,4 +212,48 @@ footer {
 input + input {
   margin: 30px;
 }
+
+.mainpage-1 {
+  background: linear-gradient(92.09deg, #255d8b 2.29%, #3a80ba 96.79%);
+  display: flex;
+  flex-direction: column;
+}
+.mainpage-2 {
+  background-color: #e5e5e5;
+  display: flex;
+  flex-direction: column;
+}
+.mainpage-3 {
+  background-color: #255d8b;
+}
+
+.button-1 {
+  width: 220px;
+  height: 56px;
+
+  background: #3a80ba;
+  border-radius: 8px;
+}
+@media screen and (min-width: 768px) {
+  .font-styled {
+    font-size: 32px;
+  }
+
+  .font-styled-11 {
+    font-size: 48px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .font-styled {
+    font-size: 15px;
+  }
+  .font-styled-11 {
+    font-size: 24px;
+  }
+  header {
+    height: 72px;
+    width: 100%;
+  }
+}
+
 @import "../../node_modules/bootstrap/scss/bootstrap";

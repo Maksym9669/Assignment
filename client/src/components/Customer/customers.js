@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import "../../styles/style.css";
 import PropTypes from "prop-types";
+import Header from "../../Header";
+import Footer from "../../Footer";
 import { connect } from "react-redux";
 import { getCustomers } from "../../store/actions/customer";
 import "./customers.css";
@@ -41,7 +43,7 @@ class Customers extends Component {
   render() {
     return (
       <div>
-        <header className="header">AppCo</header>
+        <Header></Header>
         <div className="container">
           <div className="row">
             <p>
@@ -101,11 +103,7 @@ class Customers extends Component {
                 </table>
               </div>
             </div>
-            <footer>
-              <span>AppCo</span>
-              <span>All rights reserved by ThemeTags</span>
-              <span>Copyrights © 2019</span>
-            </footer>
+            <Footer></Footer>
           </div>
         ) : (
           <Loader></Loader>

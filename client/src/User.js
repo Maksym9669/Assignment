@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { LineChart } from "react-chartkick";
+import Footer from "./Footer";
+import Header from "./Header";
 import "chart.js";
 import "./styles/style.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -72,8 +74,8 @@ export default class User extends Component {
     }
 
     return (
-      <div>
-        <header className="header">AppCo</header>
+      <div style={{ height: "100%" }}>
+        <Header></Header>
         {/* <div class="container"> */}
         {/* <h1>{this.props.match.params.userId}</h1> */}
         {!this.state.data ? (
@@ -164,11 +166,7 @@ export default class User extends Component {
                 placeholder={"Max value: " + this.state.data.dates.maxDateViews}
               />
             </div>
-            <footer>
-              <span>AppCo</span>
-              <span>All rights reserved by ThemeTags</span>
-              <span>Copyrights © 2019</span>
-            </footer>
+            <Footer></Footer>
           </div>
         )}
         {/* </div> */}
